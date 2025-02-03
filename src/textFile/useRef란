@@ -1,0 +1,35 @@
+# useRef
+새로운 Reference 객체를 생성하는 기능
+
+const refObject = useRef();
+
+#useRef와 useState는 컴포넌트 내부의 변수로 활용 가능
+단 useState는 값이 변경되면 컴포넌트 리렌더링됨.
+ㄴ 그렇기 때문에 렌더링에 영향을 미치고 싶지 않다면 변수를 생성할때 useRef를 사용하면 된다.
+
+#useRef 특징
+1. 해당 요소(컴포넌트)를 접급하여 조작하는 것도 가능하다.
+const refObject = useRef();
+<textarea
+    ref={refObject} //특정 DOM 요소에 접근
+/>
+
+EX) FOCUS
+
+#선언
+const refObj = useRef();
+console.log(refObj)//{current:undefined}
+
+#저장
+ref={refObj}
+refObj 레퍼런스 오브젝트에 저장됨.
+
+#접근
+refObj.current
+
+# 해당 컴포넌트 리렌더링?
+Register 컴포넌트 (현재 컴포넌트) 최조 렌더링 될때 'Register 렌더링'이 출력되고
+
+이후 '+버튼(이벤트 버튼)'을 클릭해도 이벤트 핸들링(refObj.current++ 및 출력)만 계속 실행될 뿐
+
+Register 컴포넌트(현재 컴포넌트)는 리렌더링 되지 않는다는걸 알 수 있다.
