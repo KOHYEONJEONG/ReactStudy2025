@@ -19,7 +19,7 @@ function App() {
     <>
               {/* 스프레드 연산자로 넣어줌. */}
       <Button {...buttonProps}/>
-      <Button text={"카페"}/>
+      
       <Button text={"블로그"}>
         {/* <div>자식요소</div> */}
         <Header/>
