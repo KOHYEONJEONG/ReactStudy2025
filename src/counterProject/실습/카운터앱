@@ -1,0 +1,21 @@
+카운트앱
+설계
+<App>
+    <Viewer/>
+    <Controller/>
+</App>
+
+
+🚨주의
+Viewer
+Controller
+컴포넌트는 자식이며, 부모한테 값을 전달할 수 없으므로
+부모컴포넌트에서 state 변수를 만들어야 한다.
+
+🚨왜?
+컴포넌트의 값을 이동할때 props를 사용하는데
+부모 -> 자식 순서대로만 props를 넘길 수 있기 때문이다.
+그래서
+Viewer
+Controller
+에서 공유할 변수는 App컴포넌트(부모)에서 생성해야 한다.
