@@ -6,7 +6,7 @@ const Button = (props) => {
 };
 */
 
-//객체의 구조분해할당 이용하기
+//객체의 구조분해 이용하기
 const Button = ({text, color = "bl", children}) => {
 
     

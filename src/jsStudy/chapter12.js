@@ -11,7 +11,8 @@ function add(a,b, callback){
 
 //add(1,2, (value) => {console.log(value)}); //3
 
-//콜백지옥으로 인해 나온 방안 Promise
+//콜백함수가 길어지면, 인덴트가 늘어나는데
+// 가독성이 떨어지고 콜백지옥으로 인해 나온 방안 Promise
 const promise = new Promise((resolve, reject) => {
 
     //비동기 작업 실행하는 함수이며 executor 함수라 함
@@ -65,5 +66,6 @@ p.then((value) => {
     catch((err) => {
     })
 
-    //💥 그래도 여전히 콜백지옥이 일어난다.
+    //💥 그래도 여전히 콜백지옥이 일어난다. 
+    // 이 다음은 키워드 async/ await에 대해 배워보자.
     
