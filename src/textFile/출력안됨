@@ -1,0 +1,11 @@
+function MyComponent() {
+  return (
+    <div>
+      {false}  {/* 아무것도 렌더링되지 않음 */}
+      {null}   {/* 아무것도 렌더링되지 않음 */}
+      {undefined} {/* 아무것도 렌더링되지 않음 */}
+      {0}  {/* 0이 출력됨 */}
+      {NaN} {/* NaN이 출력됨 */}
+    </div>
+  );
+}
