@@ -1,14 +1,5 @@
-import React from 'react';
-import './App.css';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
 
-function App() {
-  const a = "hello"
-
-              return (
-    <div>
-                      <p>와우</p>
-    </div>
-          );
-}
-
-export default App;
+createRoot(document.getElementById('root')).render(<App />);
