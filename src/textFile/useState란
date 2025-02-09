@@ -1,0 +1,38 @@
+#State란?
+상태
+ㄴ 어떠한 사물의 현재 상태
+ㄴㄴ 켜진 상태의 전구
+(전구를 끄기)🔽 🔼(전구를 켜기)
+ㄴㄴ 꺼진 상태의 전구
+
+#State를 갖는 React 컴포넌트
+ㄴ 이 값이 변화면 화면이 렌더링되는거임
+ㄴ React 컴포넌트는 State를 지닌다.
+ㄴ State의 값에 따라 렌더링 되는 UI가 결정된다.
+ㄴ 하나의 컴포넌트 안에서 여러 State 생성 할 수 있다.
+ㄴ 현재 컴포넌트의 의미있는 상태 값
+
+#배열 구조분해 할당
+const [input, setInput] = useState("");
+
+const onChange = (e) => {
+    # 상태 변화 함수를 사용하여 값을 변환해야한다. 
+    setInput(e.target.value);
+}
+
+
+# 상태변화 함수 = 비동기 함수
+상태변화 함수를 사용하여 값을 변경해도
+바로 변경된 값을 확인하지 못한다.
+
+<input value={input} onChange={(e) => {
+    setInput(e.target.value);
+    console.log(input);
+
+    //변경된 input값이 출력되지 않는다.(이전값만 나올뿐)
+
+    //🚨🚨setInput 비동기 함수라고 보면된다, 호출만 했을뿐 결과값을 받은게 아니야!
+
+    //🚨🚨useEffect를 사용해야 변경된 state값을 바로바로 사용할 수 있다.
+
+}}/>
