@@ -1,0 +1,11 @@
+
+() => expression은
+() => { return expression; }의 축약형입니다. 중괄호 내에 코드를 작성할 경우, return 문을 명시적으로 작성해야 반환값이 있습니다.
+
+# 중괄호 없이 반환
+return todos.filter((todo) => todo.content.includes(search));
+
+# 중괄호를 사용하려면 return 문 필요
+return todos.filter((todo) => { return todo.content.includes(search); });
+
+#참고 src\todoProject\components\List.jsx

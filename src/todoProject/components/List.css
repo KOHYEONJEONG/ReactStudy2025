@@ -1,3 +1,9 @@
+.List {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .List > input {
     width: 100%;
     border: none;
@@ -11,8 +17,10 @@
     border-bottom: 1px solid rgb(37, 147, 255);
 }
 
+/* TodoItem을 세로로 배치 */
 .List .todos_wrapper {
     display: flex;
     flex-direction: column;
+    /* 요소 간격 */
     gap: 20px;
 }

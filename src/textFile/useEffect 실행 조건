@@ -1,0 +1,12 @@
+# 기본적인 원리
+무조건 렌더링이나 리렌더링이 된 상태에서야 deps 배열값이 바뀌었는지 검사한다.
+
+useRef 값은 들어와도 동작하지 않는다.
+왜? 객체 자체이기 때문에 바뀌는게 아니다.
+제일 중요한건건 렌더링/리렌더링이 유발되지 않아 useEffect의 실행조건에 부합하지 않는다.
+ex ) deps배열에 [ref]
+
+그렇다면 일반변수도?
+const inputRef = useRef();
+deps배열에 inputRef.current 도 마찬가지로 실행안됨.
+ex )  [inputRef.current]
