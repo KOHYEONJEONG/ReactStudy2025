@@ -1,9 +1,9 @@
-import './App.css';
-import { useMemo, useEffect, useState, useRef } from 'react';
+import "./App.css";
+import { useMemo, useEffect, useState, useRef } from "react";
 
-import Editor from './todoProject/components/Editor';
-import Header from './todoProject/components/Header';
-import List from './todoProject/components/List';
+import Editor from "./todoProject/components/Editor";
+import Header from "./todoProject/components/Header";
+import List from "./todoProject/components/List";
 
 //컴포넌트가 리렌더링 될때마다 다시 생성할 필요 없으므로 컴포넌트 바깥에다가 생성한다.
 //삭제하면 원소가 삭제된다(새로고침 전까지 유지됨)
@@ -11,19 +11,19 @@ const mockData = [
 	{
 		id: 0,
 		isDone: false, //체크박스
-		content: '숙제하기',
+		content: "숙제하기",
 		date: new Date().getTime(),
 	},
 	{
 		id: 1,
 		isDone: false,
-		content: '빨래하기',
+		content: "빨래하기",
 		date: new Date().getTime(),
 	},
 	{
 		id: 2,
 		isDone: false,
-		content: 'React 공부하기',
+		content: "React 공부하기",
 		date: new Date().getTime(),
 	},
 ];
@@ -48,9 +48,7 @@ function App() {
 	//체크박스 클릭/해제(삼항연산자)
 	const onUpdate = (targetId) => {
 		setTodos(
-			todos.map((todo) =>
-				todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo
-			)
+			todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo))
 		);
 	};
 

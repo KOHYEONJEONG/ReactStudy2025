@@ -1,12 +1,12 @@
-import './App.css';
-import HookExam from './component/HookExam';
+import "./App.css";
+import HookExam from "./component/HookExam";
 // import Register from './component/Register';
 function App() {
-  return(
-    <>
-      <HookExam/>
-    </>
-  )
+	return (
+		<>
+			<HookExam />
+		</>
+	);
 }
 
 export default App;
