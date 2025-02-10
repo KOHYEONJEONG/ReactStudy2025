@@ -1,7 +1,7 @@
 import "./App.css";
-import Viewer from "./counterProject/component/Viewer";
-import Controller from "./counterProject/component/Controller";
-import Even from "./counterProject/component/Even";
+import Viewer from "./counterProject/components/Viewer";
+import Controller from "./counterProject/components/Controller";
+import Even from "./counterProject/components/Even";
 import { useState, useEffect, useRef } from "react";
 function App() {
 	const [count, setCount] = useState(0);
