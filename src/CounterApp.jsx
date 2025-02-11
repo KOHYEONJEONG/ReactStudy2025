@@ -21,7 +21,7 @@ function App() {
 			return;
 		}
 		console.log("update");
-	});
+	}); //deps가 없으면 : 컴포넌트가 리렌더링될 때 호출된다.
 
 	//3. UnMount(죽음)
 

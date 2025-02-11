@@ -6,6 +6,7 @@ const Bulb = () => {
 	return (
 		<>
 			<div>
+				{/* 삼함연산자, ()으로 묶기 */}
 				{light === "ON" ? (
 					<h1 style={{ backgroundColor: "orange" }}>ON</h1>
 				) : (

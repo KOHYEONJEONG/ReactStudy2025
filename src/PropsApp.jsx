@@ -17,6 +17,7 @@ function App() {
 	return (
 		<>
 			{/* 스프레드 연산자로 넣어줌. */}
+			{/* JavaScript에서 객체를 펼치면 key: "value" 형태가 맞지만, JSX에서는 key="value" 형태로 변환됩니다. */}
 			<Button {...buttonProps} />
 
 			<Button text={"블로그"}>
