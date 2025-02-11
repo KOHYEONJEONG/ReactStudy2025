@@ -10,3 +10,15 @@ ex ) deps배열에 [ref]
 const inputRef = useRef();
 deps배열에 inputRef.current 도 마찬가지로 실행안됨.
 ex )  [inputRef.current]
+
+
+# 하지만 이거는 알아야한다. 리렌더링이 되면은  deps 배열에 ref가 있어도 실행된다는걸!
+const [input, setInput] = useState("");
+const count = useRef(0);
+
+const onChnage = (e) => {
+    setInput(e.target.value);//이때 리렌더링되지?
+    count.current ++ ;
+}
+
+useEffect (()=>{}, [count]);//그러면 실행하는거야!
