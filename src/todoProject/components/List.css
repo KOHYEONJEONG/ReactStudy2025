@@ -1,26 +1,26 @@
 .List {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .List > input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid rgb(220, 220, 220);
-    padding: 15px 0px;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid rgb(220, 220, 220);
+	padding: 15px 0px;
 }
 
 /* 바깥 테두리 사라지게 */
 .List > input:focus {
-    outline: none;
-    border-bottom: 1px solid rgb(37, 147, 255);
+	outline: none;
+	border-bottom: 1px solid rgb(37, 147, 255);
 }
 
 /* TodoItem을 세로로 배치 */
 .List .todos_wrapper {
-    display: flex;
-    flex-direction: column;
-    /* 요소 간격 */
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	/* 요소 간격 */
+	gap: 20px;
 }
