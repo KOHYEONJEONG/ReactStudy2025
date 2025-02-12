@@ -33,6 +33,12 @@ const Register = () => {
 			...input,
 			[e.target.name]: e.target.value, //태그의 name속성 필수임
 		});
+
+		// 함수형 업데이트 방법(https://react.vlpt.us/basic/07-useState.html)
+		// setInputs(inputs => ({
+		// 	...inputs,
+		// 	[name]: value
+		//   }));
 	};
 
 	//이벤트 핸들러라고 부름
