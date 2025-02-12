@@ -1,0 +1,36 @@
+# useReducer
+
+컴포넌트 내부에 새로운 State를 생성하는 React Hook
+모든 useState는 useReducer로 대체 가능
+⭐상태 관리 코드를 컴포넌트 '외부'로 분리할 수 있음.
+
+컴포넌트 내부에 상태 관리 코드를 작성해야 했다.
+function App(){
+
+    const [todos, setTodos] = useState("");
+
+    const onCreate = (content) => {
+        setTodos([...])
+    }
+
+}
+🔽
+실제로 state를 관리하는 코드는 컴포넌트 외부에서 한다.
+function reducer(){
+...
+}
+
+function App(){
+
+    const [todos, setTodos] = useRedicer(reducer);
+
+...
+
+}
+
+# 주객전도
+
+1. React 컴포넌트의 가장 주된 역할을 UI를 렌더링하는 것.
+2. 그렇기 때문에 한 컴포넌트 내부에 State를 관리하는 코드가 많아지면 주객이 전도된다.
+   사실상 상태를 관리하는 코드로 잡아먹히게되는 구조(복잡)가 된다.
+3. 가독성 및 유지보수가 어려워진다.
