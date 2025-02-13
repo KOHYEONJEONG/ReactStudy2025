@@ -1,5 +1,8 @@
+https://react.vlpt.us/basic/07-useState.html
+
 #State란?
-상태
+- 컴포넌트에서 동적인 값을 상태(STATE)라고 부른다.
+- 상태
 ㄴ 어떠한 사물의 현재 상태
 ㄴㄴ 켜진 상태의 전구
 (전구를 끄기)🔽 🔼(전구를 켜기)
