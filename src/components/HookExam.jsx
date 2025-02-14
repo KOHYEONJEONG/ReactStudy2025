@@ -1,4 +1,4 @@
-import useInput from "./../hooks/useInput";
+import useInput from "../hooks/useInput";
 
 const HookExam = () => {
 	console.log("HookExam 렌더링");
