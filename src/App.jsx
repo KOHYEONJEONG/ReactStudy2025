@@ -3,7 +3,7 @@ import Viewer from "./counterProject/components/Viewer";
 import Controller from "./counterProject/components/Controller";
 import Even from "./counterProject/components/Even";
 import { useState, useEffect, useRef } from "react";
-import Exam from "./component/Exam";
+import Exam from "./components/Exam";
 function App() {
 	const [count, setCount] = useState(0);
 	const [input, setInput] = useState("");
