@@ -1,0 +1,167 @@
+
+import Image from "next/image"
+import useLannCheck from "./useLannCheck"
+
+const Paging = ({controller, paging, pageOption, onPaging}) => {
+
+    const {isKr} = useLannCheck();
+    const pagingHandler = controller?.handler?.paging || onPaging || ((p)=> console.log(p));
+
+//pageOption 파라미터 예시
+    const pageOption = {
+        "totalCount": 2,  //총 게시물 수
+        "pageIndex": 1,   //현재 페이지
+        "listRowSize": 9, // 보여지는 게시물 갯수
+        "pageRowSize": 5, //페이지 버튼 갯수
+        "list" : [{}]
+    }
+
+    //파라미터 분해
+    const paging = {
+        page : !isNaN(pageOption?.pageIndex) ? +pageOption.pageIndex : 1,
+        maxPage : !isNaN(pageOption?.totalCount) && !isNaN(pageOption?.listRowSize) 
+                    ? Math.ceil(pageOption.totalCount/pageOption.listRowSize)
+                    : 1,
+        pageSize : !isNaN(pageOption?.pageRowSize) ? +pageOption.pageRowSize : 5
+        
+    }
+
+    //객체 구조분해
+    const {page, maxPage, pageSize} = paging || option;
+
+    //2 3 '4' 5 6
+    //페이지네이션 범위 조정
+    const getPageOption = (page, maxPage, pSize) => {
+        //단항연산자(숫자면 숫자로 변환)
+        const cPage = !isNaN(page)? +page : 1;
+        //좌우대칭 보정값
+        const centerPage = Math.floor(pSize / 2) || 0; // pSize에 따라 0부터 점진적으로 증가됨.( ex : 2)
+
+        let startPage = 1;
+        let endPage = maxPage;// 총 게시물 수 ex)44
+
+        //ex) 44 - 1 > 5
+        if(endPage - startPage > pageSize){  //pageSize : 페이지버튼 개수
+           
+            //[시작페이지 조정]
+            //현재 페이지에서 보정값을 뺀 값이 1보다 작으면 1로 보정해준다.
+            startPage = cPage - centerPage < 1 ? 1: cPage - centerPage;
+
+            //[끝페이지 조정]
+            //시작페이지로부터 끝 페이지를 구하되, startPage에 pageSize를 더한 값이 maxPage보다 적을 수 있으므로, 보정해준다.
+            const maxEndPage = startPage + pSize  -1 > maxPage? maxPage : startPage + pSize - 1;
+
+            //ex) 2 + 2 > 44 ? 44 : 4
+            endPage = cPage + centerPage > maxEndPage ? maxEndPage : cPage + centerPage;
+
+            //  --------- [시작&끝 페이지 조정] ---------
+            // 보정값보다 현재 페이지 왼쪽이 적을 경우 끝페이지를 보정해준다.
+            // ✅맨 앞쪽으로 가야지 빛을 보이는 코드(페이지: 1,2)
+            if (cPage - startPage < centerPage) {
+                endPage += centerPage - (cPage - startPage);//(왼쪽버튼이 부족한 경우, endPage 늘려서 보정)
+                //4 += 2 -(2-1)
+                //5
+            }
+            // 보정값보다 현재 페이지 오른쪽이 적을 경우 시작 페이지를 보정해준다.
+            // ✅특히 맨 끝쪽으로 가야지 빛을 보이는 코드(페이지: 42,43(맨마지막 44))
+            if (endPage - cPage < centerPage) {
+                startPage -= centerPage - (endPage - cPage);//(오른쪽 버튼이 부족한 경우, startPage 줄여서 보정)
+            }
+    }
+
+        //현재 페이지가 총 게시물 수 보다 큰가?
+        let fixCPage = cPage > endPage ? endPage : cPage;
+
+        return {
+            fixCPage, //보정된 페이지
+            startPage, //시작 페이지 번호
+            endPage   //끝 페이지 번호
+        }
+    }
+
+    //객체 구조분해
+    const {fixCPage, startPage, endPage} = getPageOption(page, maxPage, pageSize );
+
+
+    //페이징 버튼 표시 및 스타일
+    const fixPageObj = (pageObj, cPage, firstPage, lastPage) => {
+        const addClass = "grey";//페이지버튼 색(누르지 않은 버튼 색)
+        let isClassType = true;
+
+        if(isClassType){
+            let range = [];
+            range = cPage == firstPage  ? [0,1] : range;
+            range = cPage == lastPage ? [pageObj.length - 2, pageObj.length - 1] : range;
+            range = lastPage == 1 ? [0,1,2,3,4] : range;
+
+            //스타일
+            range.forEach((n) => pageObj[n] && (pageObj[n].class = addClass));
+
+        }
+        return pageObj;
+    }
+
+    //버튼 눌렀는지 
+    const buildPageObj = (fixCPage, startPage, endPage) => {
+        return [
+            {paging: "<<", active:false},
+            {paging : "<", active:false},
+            ...(() => {
+                const rtnObj = [];
+                for(let i = startPage, max= endPage; i<= max; i++){
+                    rtnObj.push({paging:i, active:i == fixCPage })
+                }
+                return rtnObj;
+            })(),//즉시 실행함수
+            {paging:">", active:false},
+            {paging:">>", active:false},
+        ];
+    };//buildPageObj
+
+    const data = fixPageObj(buildPageObj(fixCPage, startPage, endPage), fixCPage, 1, maxPage);
+
+
+return(
+
+    {data.map((item, index) => {
+        switch (item.paging) {
+          case "<<":
+            return (
+                 <li key={index} className={item?.class}>
+            )
+          case "<":
+            return()
+          case ">":
+           return()
+           case ">>":
+            return()
+          default:
+            return(
+                 <li
+                    key={index}
+                    className={classNames({ active: item.active })}
+                    style={{ cursor: "pointer" }}
+              >
+            )
+       }
+      })}
+)
+}
+
+export default Paging;
+
+//console.log(getPageOption(10, 20, 5));// (현재 페이지 10, 총 20페이지, 5개 버튼)
+# 출력
+{
+    "fixCPage": 10, //현재페이지로 사용
+    "startPage": 8,
+    "endPage": 12
+}
+
+
+# 보정값(centerPage): 
+페이지네이션에서 현재 페이지를 중심으로 좌우 균형을 맞추기 위해 조정하는 값
+> 보정 이유: 첫 페이지, 마지막 페이지에 있을 때 버튼이 부족하거나 초과될 수 있음
+> 보정 방식:
+현재 페이지가 너무 왼쪽이면 → 끝 페이지(endPage)를 늘림
+현재 페이지가 너무 오른쪽이면 → 시작 페이지(startPage)를 줄임

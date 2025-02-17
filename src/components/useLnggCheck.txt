@@ -1,0 +1,21 @@
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
+const useLannCheck = () => {
+    const pathName = usePathname();
+    const [isKr, setIsKr] = useState("kr");
+    const [isLoadingState, setIsLoadingState] = useState(true);
+
+    useEffect(() => {
+        pathName.indexOf("/kr") > -1 ? setIsKr(true) : setIsKr(false);
+        setIsLoadingState(false);
+    }, [pathName]);
+
+    is(isLoadingState || isKr === null){
+        return {isKr, isLoadingState:true};
+    }
+
+    return {isKr, isLoadingState:false};
+}
+
+export default useLannCheck;
