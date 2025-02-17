@@ -1,39 +1,95 @@
 import "./App.css";
-import Viewer from "./counterProject/components/Viewer";
-import Controller from "./counterProject/components/Controller";
-import Even from "./counterProject/components/Even";
-import { useState, useEffect, useRef } from "react";
+import Header from "./todoProject/components/Header";
+import Editor from "./todoProject/components/Editor";
+import List from "./todoProject/components/List";
+import { useState, useEffect, useRef, useReducer } from "react";
 import Exam from "./components/Exam";
+const mockData = [
+	{
+		id: 0,
+		isDone: false, //체크박스
+		content: "숙제하기",
+		date: new Date().getTime(),
+	},
+	{
+		id: 1,
+		isDone: false,
+		content: "빨래하기",
+		date: new Date().getTime(),
+	},
+	{
+		id: 2,
+		isDone: false,
+		content: "React 공부하기",
+		date: new Date().getTime(),
+	},
+];
+//복잡한 코드는 reducer를 사용하여 가독성을 높일 수 있다.(일반적으로 이렇게 사용한다.)
+function reducer(state, action) {
+	//return문에는 변화된 state 값을 return해줄거임.
+	switch (action.type) {
+		case "INSERT":
+			return [action.data, ...state];
+		case "UPDATE":
+			//기존에 todoItem값만 나열하고 해당ID만 업데이트
+			return state.map((todo) =>
+				todo.id === action.data ? { ...todo, isDone: !todo.isDone } : todo
+			);
+		case "DELETE":
+			return state.filter((todo) => todo.id !== action.data);
+		default:
+			return state;
+	}
+}
 function App() {
-	const [count, setCount] = useState(0);
-	const [input, setInput] = useState("");
-	const isMount = useRef(false); //라이프 사이클 중 update일때만 사이드이펙트 사용하기 위해 생성
+	// const [todos, setTodos] = useState(mockData);
+	const [todos, dispatch] = useReducer(reducer, mockData);
 
-	//1. Mount(탄생) :[], 최초1회 실행
-	useEffect(() => {
-		console.log("Mount");
-	}, []);
+	const contentId = useRef(3);
 
-	//2. Update(변화 , 리렌더링)
-	useEffect(() => {
-		if (!isMount.current) {
-			// 컴포넌트가 Mount되지 않으면 실행x, 이후 리렌더링에서만 실행된다.
-			isMount.current = true;
-			return;
-		}
-		console.log("update");
-	}); //deps가 없으면 : 컴포넌트가 리렌더링될 때 호출된다.
+	const onCreate = (content) => {
+		let newTodo = {
+			id: contentId.current++,
+			isDone: false,
+			content: content,
+			date: new Date().getTime(),
+		};
 
-	//3. UnMount(죽음)
-
-	//이벤트 핸들러
-	const onClickButton = (value) => {
-		setCount(count + value);
+		//todos.push(newTodo) <-- 이렇게하면 리렌더링 시 사라짐
+		//🚨변경된 값을 react가 감지하려면 제공된 '상태변화함수'를 이용하자.
+		//setTodos([newTodo, ...todos]); //새로운 배열 생성
+		dispatch({
+			type: "INSERT",
+			data: newTodo,
+		});
 	};
 
+	//체크박스 클릭/해제(삼항연산자)
+	const onUpdate = (targetId) => {
+		// setTodos(
+		// 	todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo))
+		// );
+
+		dispatch({
+			type: "UPDATE",
+			data: targetId, //어떤 id가 변화되는지 보내기
+		});
+	};
+
+	//삭제버튼
+	const onDelete = (targetId) => {
+		//인수 : todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
+		// setTodos(todos.filter((todo) => todo.id !== targetId));
+		dispatch({
+			type: "DELETE",
+			data: targetId, //어떤 id가 변화되는지 보내기
+		});
+	};
 	return (
 		<div className="App">
-			<Exam />
+			<Header />
+			<Editor onCreate={onCreate} />
+			<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
 		</div>
 	);
 }
