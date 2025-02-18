@@ -87,6 +87,7 @@ function App() {
 	};
 	return (
 		<div className="App">
+			{/* Header 컴포넌트는 App컴포넌트가 리렌더링되더라도, 리렌더링할 필요가 전혀 없다. */}
 			<Header />
 			<Editor onCreate={onCreate} />
 			<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />

@@ -44,3 +44,11 @@ const onRemove = id => {
     // = user.id 가 id 인 것을 제거함
     setUsers(users.filter(user => user.id !== id));
   };
+
+# concat 함수
+- 내장함수
+- 새로운 원소가 추가된 새로운 배열을 만들어준다.
+예시)
+setUsers([...users, user]);
+⏬(둘다 결과는 같다.)
+setUsers(users.concat(user));

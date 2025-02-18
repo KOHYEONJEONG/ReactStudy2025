@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Header = () => {
 	return (
 		<div>
@@ -6,4 +8,6 @@ const Header = () => {
 		</div>
 	);
 };
-export default Header;
+
+//메모제이션(최적화)된 Header 컴포넌트
+export default memo(Header);

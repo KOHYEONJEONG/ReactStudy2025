@@ -16,8 +16,15 @@ function App(){
 }
 🔽
 실제로 state를 관리하는 코드는 컴포넌트 외부에서 한다.
-function reducer(){
-...
+function reducer(state, action) {
+	//return문에는 변화된 state 값을 return해줄거임.
+	switch (action.type) {
+		case "INSERT":
+			return [action.data, ...state];
+		...
+		default:
+			return state;
+	}
 }
 
 function App(){
@@ -25,6 +32,11 @@ function App(){
     const [todos, setTodos] = useRedicer(reducer);
 
 ...
+
+dispatch({
+			type: "UPDATE",
+			data: targetId, //어떤 id가 변화되는지 보내기
+		});
 
 }
 

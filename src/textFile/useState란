@@ -39,3 +39,24 @@ const onChange = (e) => {
     //🚨🚨useEffect를 사용해야 변경된 state값을 바로바로 사용할 수 있다.
 
 }}/>
+
+
+---------------------
+# 한번에 state 변수 관리하는 방법(객체형태로 관리)
+const [input, setInput] = useState({
+		name: "",
+		birth: "",
+		country: "",
+		bio: "",
+	});
+
+# 한번에 통합 이벤트핸들러로 관리하는 방법(객체형태로 관리
+const onChange = (e) => {
+    // console.log(e.target.name, e.target.value)
+    countRef.current++;
+    console.log(countRef.current);
+    setInput({
+        ...input,
+        [e.target.name]: e.target.value, # 태그의 name속성 필수임
+    });
+};
