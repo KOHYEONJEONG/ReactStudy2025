@@ -39,7 +39,7 @@ export default memo(TodoItem, (prevProps, nextProps) => {
 	// T -> Props 바뀌지 않음 -> 리렌더링 X
 	// F -> Props 바뀜 -> 리렌더링 O
 
-	//✅id, isDone, content, date의 값이 바꼈는지를 확인한다.
+	//✅id, isDone, content, date의 값이 바꼈는지를 확인한다.(조건에 걸리지 않으면 리렌더링 하지 않는다.)
 	if (prevProps.id !== nextProps.id) return false;
 	if (prevProps.isDone !== nextProps.isDone) return false;
 	if (prevProps.content !== nextProps.content) return false;
