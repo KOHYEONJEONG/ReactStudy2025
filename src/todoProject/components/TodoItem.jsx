@@ -26,10 +26,11 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 		</div>
 	);
 };
-//export default TodoItem;
+export default  memo(TodoItem);//App 컴포넌트에서 useCallback 사용중이어서 고차컴포넌트 사용안해도 됨.
 
 //고차 컴포넌트(HOC)
 //콜백함수의 매개변수로 과거와 현재 PROPS를 비교한다.(바꼈는가? 안바꼈는가?)
+/*
 export default memo(TodoItem, (prevProps, nextProps) => {
 	//memo메서드는 얕은 비교를 하기에 매번 다른 주소값으로 인식한다(리렌더링이 된다는 뜻)
 	//객체타입을 props로 받고 있는 컴포넌트는 과거와 현재 값을 비교해야한다.
@@ -40,10 +41,14 @@ export default memo(TodoItem, (prevProps, nextProps) => {
 	// F -> Props 바뀜 -> 리렌더링 O
 
 	//✅id, isDone, content, date의 값이 바꼈는지를 확인한다.(조건에 걸리지 않으면 리렌더링 하지 않는다.)
+	//prevProps : 과거
+	//nextProps : 현재
 	if (prevProps.id !== nextProps.id) return false;
 	if (prevProps.isDone !== nextProps.isDone) return false;
 	if (prevProps.content !== nextProps.content) return false;
 	if (prevProps.date !== nextProps.date) return false;
 
 	return true; //바뀌지 않았으면 return true를 반환하여 리렌더링 하지말아라.
-});
+});*/
+
+

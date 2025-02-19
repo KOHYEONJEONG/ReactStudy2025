@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./todoProject/components/Header";
 import Editor from "./todoProject/components/Editor";
 import List from "./todoProject/components/List";
-import { useState, useEffect, useRef, useReducer } from "react";
+import { useState, useEffect, useRef, useReducer, useCallback } from "react";
 import Exam from "./components/Exam";
 const mockData = [
 	{
@@ -47,7 +47,8 @@ function App() {
 
 	const contentId = useRef(3);
 
-	const onCreate = (content) => {
+	//useCallback ( 최적화할 함수, [deps] )
+	const onCreate =  useCallback((content) =>{
 		let newTodo = {
 			id: contentId.current++,
 			isDone: false,
@@ -62,10 +63,10 @@ function App() {
 			type: "INSERT",
 			data: newTodo,
 		});
-	};
+	}, []);
 
 	//체크박스 클릭/해제(삼항연산자)
-	const onUpdate = (targetId) => {
+	const onUpdate =useCallback((targetId) => {
 		// setTodos(
 		// 	todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo))
 		// );
@@ -74,17 +75,18 @@ function App() {
 			type: "UPDATE",
 			data: targetId, //어떤 id가 변화되는지 보내기
 		});
-	};
+	},[]);
 
 	//삭제버튼
-	const onDelete = (targetId) => {
+	const onDelete = useCallback((targetId) => {
 		//인수 : todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
 		// setTodos(todos.filter((todo) => todo.id !== targetId));
 		dispatch({
 			type: "DELETE",
 			data: targetId, //어떤 id가 변화되는지 보내기
 		});
-	};
+	},[]);
+
 	return (
 		<div className="App">
 			{/* Header 컴포넌트는 App컴포넌트가 리렌더링되더라도, 리렌더링할 필요가 전혀 없다. */}
