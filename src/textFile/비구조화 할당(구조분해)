@@ -13,3 +13,7 @@ https://learnjs.vlpt.us/useful/06-destructuring.html
 # 
 { data = 'firstData' }는 기본값 할당 문법이고,
 { data: firstData }는 변수명을 변경하는 문법입니다.
+
+
+/////////////////////////
+chapter19.js <- 배열/객체 구조분해
