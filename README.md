@@ -15,5 +15,11 @@
 # 실습
 
 1. 카운터 프로젝트(counterProject)
+- 위치 : src/counterProject
 2. 투두리스트 프로젝트(todoProject)
-3. 
+- 위치 : src/todoProject
+3. 감정일기장(진행중)
+
+
+# 실행
+- npm run dev
