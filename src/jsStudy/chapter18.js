@@ -1,6 +1,3 @@
-https://learnjs.vlpt.us/useful/02-truthy-and-falsy.html
-
-
 // 1. Falsy한 값
 let f1 = undefined;
 let f2 = null;
@@ -20,12 +17,16 @@ let t5 = () => {};
 
 // 3. 활용 사례
 function printName(person) {
-  if (!person) {
-    console.log("person의 값이 없음");
-    return;
-  }
-  console.log(person.name);
+	if (!person) {
+		console.log("person의 값이 없음");
+		return;
+	}
+	console.log(person.name);
 }
 
+
 let person = { name: "ko" };
-printName(person);
+
+printName(person);//ko
+
+//node src/jsStudy/chapter18.js

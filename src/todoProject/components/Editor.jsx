@@ -1,8 +1,12 @@
 import "./Editor.css";
-import { useState, useRef } from "react";
-const Editor = ({ onCreate }) => {
-	//객체 구조분해로 prop 받음.
+import { useState, useRef, useContext } from "react";
+import {TodoContext} from "../../App.jsx";
+// const Editor = ({ onCreate }) => {
+const Editor = () => {
 
+	const {onCreate} = useContext(TodoContext);
+
+	//객체 구조분해로 prop 받음.
 	const [content, setContent] = useState("");
 	const inputRef = useRef(); //포커스하려고 생성
 

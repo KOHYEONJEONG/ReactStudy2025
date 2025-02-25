@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./todoProject/components/Header";
 import Editor from "./todoProject/components/Editor";
 import List from "./todoProject/components/List";
-import { useState, useEffect, useRef, useReducer, useCallback } from "react";
+import { useState, useEffect, useRef, useReducer, useCallback, createContext } from "react";
 import Exam from "./components/Exam";
 const mockData = [
 	{
@@ -41,6 +41,9 @@ function reducer(state, action) {
 			return state;
 	}
 }
+
+export const TodoContext = createContext();
+
 function App() {
 	// const [todos, setTodos] = useState(mockData);
 	const [todos, dispatch] = useReducer(reducer, mockData);
@@ -91,8 +94,19 @@ function App() {
 		<div className="App">
 			{/* Header 컴포넌트는 App컴포넌트가 리렌더링되더라도, 리렌더링할 필요가 전혀 없다. */}
 			<Header />
-			<Editor onCreate={onCreate} />
-			<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+			<TodoContext.Provider
+				value={{
+					todos,
+					onCreate,
+					onUpdate,
+					onDelete,
+				}}
+			>
+			{/*<Editor onCreate={onCreate} />*/}
+			{/*	<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />*/}
+			<Editor />
+			<List/>
+			</TodoContext.Provider>
 		</div>
 	);
 }

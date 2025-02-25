@@ -1,7 +1,13 @@
 import "./List.css";
 import TodoItem from "./TodoItem";
-import { useMemo, useState } from "react";
-const List = ({ todos, onUpdate, onDelete }) => {
+import { useMemo, useState , useContext} from "react";
+import {TodoContext} from "../../App.jsx"
+
+
+// const List = ({ todos, onUpdate, onDelete}) => {
+const List = () => {
+
+	const {todos} = useContext(TodoContext);
 	const [search, setSearch] = useState("");
 
 	//이벤트 핸들러
@@ -59,7 +65,8 @@ const List = ({ todos, onUpdate, onDelete }) => {
 					//어떠한 리스트를 컴포넌트로 렌더링하게되면 고유한 key값을 가져야한다.(props의 key를 사용한다.)
 					//key={todo.id}
 					return (
-						<TodoItem key={todo.id} {...todo} onUpdate={onUpdate} onDelete={onDelete} />
+						// <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} onDelete={onDelete} />
+						<TodoItem key={todo.id} {...todo}/>
 					);
 				})}
 			</div>
