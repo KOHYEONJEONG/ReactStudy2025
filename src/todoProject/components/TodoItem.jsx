@@ -1,13 +1,15 @@
 import "./TodoItem.css";
 import { memo, useContext } from "react";
+import {TodoContext} from "../../App.jsx"
 
-const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
+// const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
+const TodoItem = ({ id, isDone, content, date}) => {
 	//함수는 객체타입으로 생성하지? 즉 새로운 주소값으로 저장된다(객체는 주소값으로 수행)
 	//현재 부모 App컴포넌트가 리렌더링되면 props인 onUpdate와 onDelete는 새로운 주소값(새로운 함수)으로 들어오기때문에
 	//memo(TodoItem)만 하면 안된다.
 	//객체타입 변수는 프롭스로 받는 자식 컴포넌트는 이렇게만 사용하면 안된다는 말이다.
 
-	//const {onUpdate, onDelete} = useContext(TodoContext);
+	const {onUpdate, onDelete} = useContext(TodoContext);
 
 	const onChangeCheckbox = () => {
 		onUpdate(id);
@@ -29,7 +31,7 @@ const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 		</div>
 	);
 };
-export default  memo(TodoItem);//App 컴포넌트에서 useCallback 사용중이어서 고차컴포넌트 사용안해도 됨.
+export default  memo(TodoItem);//App 컴포넌트에서 useCallback 사용중이어서 고차 컴포넌트 사용 안 해도 됨.
 
 //고차 컴포넌트(HOC)
 //콜백함수의 매개변수로 과거와 현재 PROPS를 비교한다.(바꼈는가? 안바꼈는가?)
