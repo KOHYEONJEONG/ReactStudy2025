@@ -50,7 +50,8 @@ function App() {
 
 	const contentId = useRef(3);
 
-	//useCallback ( 최적화할 함수, [deps] )
+    //🔽컴포넌트 마운트 이후로는 리렌더링 안되게
+	//useCallback ( 최적화할 함수(익명함수), [deps] )
 	const onCreate =  useCallback((content) =>{
 		let newTodo = {
 			id: contentId.current++,
