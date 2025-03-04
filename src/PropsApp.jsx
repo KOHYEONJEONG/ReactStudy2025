@@ -1,8 +1,8 @@
 import "./App.css";
-import Header from "./component/Header"; //리액트 앱에서는 ES모듈시스템을 기본적으로 사용중이지만 확장자 생략 가능하다.
-import Footer from "./component/Footer";
-import Main from "./component/Main";
-import Button from "./component/Button";
+import Header from "./components/Header"; //리액트 앱에서는 ES모듈시스템을 기본적으로 사용중이지만 확장자 생략 가능하다.
+import Footer from "./components/Footer";
+import Main from "./components/Main";
+import Button from "./components/Button";
 
 //HTML 태그들을 반환하는 함수를 특별히 component라고 부른다.
 // 함수명 컴포넌트

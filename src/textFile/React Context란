@@ -26,5 +26,34 @@ ChildB
 //////////////////
 
 [Provider]
+
+[선언1]
+- 🚨컴포넌트 위에서 선언 o
+import {createContext } from "react";
 const TodoContext = createContext();
-console.log(
+console.log(TodoContext);
+- Provider 파란색 굵은 부분이 보이는데
+이 프로바이터는 이 컨테스트가 공급할 데이터를 설정하거나 또는 이컨텍스트의
+데이터를 공급받을 컴포넌트들을 설정하기 위해서 우리가 사용하는 그런 props
+
+[선언2 - 초기화]
+- 컴포넌트 위에서 사용 x
+ ㄴ 선언만 위에서 하기 [예시) export const TodoContext = createContext();]
+- 🚨return문 안에서 사용
+ㄴ 예시) <TodoContext.Provider value={객체로 묶기}> ... </TodoContext.Provider>로 감싸기
+
+[사용1]
+그리고 🚨공급받은 컴포넌트에서는 필요한 부분만 구조분해할당으로 불러와줌.
+import {useContext} from "react";
+import {TodoContext} from "../../App.jsx"
+...
+const {onUpdate, onDelete} = useContext(TodoContext);
+
+
+///////////////////////
+[최적화가 풀리는 문제]
+- Provider 컴포넌트도 엄연히 React의 컴포넌트이다.
+- App 컴포넌트로부터 Value Porops를 제공 받는 todos(state)와 OnCreate, OnUpdate, OnDelete 가 바뀌게 되면 객체가 다시 생성되고 리렌더링하게 된다.
+- 그래서 분리를 하지 않으면 TodoItem 컴포넌트에서 todos(state)가 바뀌게 되면 useContext를 호출하여
+const {onUpdate, onDelete} = useContext(TodoContext); 이 객체가 다시 생성되며 TodoItem 리렌더링이 발생하게 된다.
+- memo를 적용했더라도 이렇게 useContext로부터ㅂ

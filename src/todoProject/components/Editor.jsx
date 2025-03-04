@@ -1,7 +1,7 @@
 import "./Editor.css";
 import { useState, useRef, useContext } from "react";
 // import {TodoContext} from "../../App.jsx";
-import {TodoDispatchContext} from "../../App.jsx";
+import {TodoDispatchContext} from "../../TodoListContextApp.jsx";
 // const Editor = ({ onCreate }) => {
 const Editor = () => {
 	// const {onCreate} = useContext(TodoContext);

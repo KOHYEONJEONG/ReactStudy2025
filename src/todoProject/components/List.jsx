@@ -2,7 +2,7 @@ import "./List.css";
 import TodoItem from "./TodoItem";
 import { useMemo, useState , useContext} from "react";
 // import {TodoContext} from "../../App.jsx"
-import {TodoStateContext} from "../../App.jsx"
+import {TodoStateContext} from "../../TodoListContextApp.jsx"
 
 
 // const List = ({ todos, onUpdate, onDelete}) => {

@@ -1,7 +1,7 @@
 import "./TodoItem.css";
 import { memo, useContext } from "react";
 // import {TodoContext} from "../../App.jsx"
-import {TodoDispatchContext} from "../../App.jsx"
+import {TodoDispatchContext} from "../../TodoListContextApp.jsx"
 
 // const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 const TodoItem = ({ id, isDone, content, date}) => {
