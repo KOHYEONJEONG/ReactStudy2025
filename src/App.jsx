@@ -2,8 +2,7 @@ import "./App.css";
 import Header from "./todoProject/components/Header";
 import Editor from "./todoProject/components/Editor";
 import List from "./todoProject/components/List";
-import { useState, useEffect, useRef, useReducer, useCallback, createContext } from "react";
-import Exam from "./components/Exam";
+import { useState, useEffect, useRef, useReducer, useCallback, createContext, useMemo } from "react";
 const mockData = [
 	{
 		id: 0,
@@ -42,7 +41,13 @@ function reducer(state, action) {
 	}
 }
 
-export const TodoContext = createContext();
+// export const TodoContext = createContext();
+
+// Context 분리
+// eslint-disable-next-line react-refresh/only-export-components
+export const TodoStateContext = createContext();//변하할 값
+// eslint-disable-next-line react-refresh/only-export-components
+export const TodoDispatchContext = createContext();//변화지 않은 값
 
 function App() {
 	// const [todos, setTodos] = useState(mockData);
@@ -91,23 +96,36 @@ function App() {
 		});
 	},[]);
 
+
+	//App 컴포넌트 마운트 이후로 재생성되지 않게, deps []
+	const memoizedDispatch = useMemo(() => {
+		return { onCreate, onUpdate, onDelete };
+	}, []);
+
+	const prevDispatchRef = useRef(memoizedDispatch)
+
+	useEffect(() => {
+
+		if (prevDispatchRef.current === memoizedDispatch) {
+			console.log("✅ memoizedDispatch 유지됨 (같은 객체)");
+		} else {
+			console.log("❌ memoizedDispatch 새로 생성됨 (다른 객체)");
+		}
+		prevDispatchRef.current = memoizedDispatch; // 갱신
+	}, [memoizedDispatch]);
+
 	return (
 		<div className="App">
 			{/* Header 컴포넌트는 App컴포넌트가 리렌더링되더라도, 리렌더링할 필요가 전혀 없다. */}
 			<Header />
-			<TodoContext.Provider
-				value={{
-					todos,
-					onCreate,
-					onUpdate,
-					onDelete,
-				}}
-			>
-			{/*<Editor onCreate={onCreate} />*/}
-			{/*	<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />*/}
-			<Editor />
-			<List/>
-			</TodoContext.Provider>
+			<TodoStateContext.Provider value={todos}>
+				<TodoDispatchContext.Provider value={memoizedDispatch}>
+					{/*<Editor onCreate={onCreate} />*/}
+					{/*	<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />*/}
+					<Editor />
+					<List/>
+				</TodoDispatchContext.Provider>
+			</TodoStateContext.Provider>
 		</div>
 	);
 }

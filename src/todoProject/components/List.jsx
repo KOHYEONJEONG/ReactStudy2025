@@ -1,13 +1,15 @@
 import "./List.css";
 import TodoItem from "./TodoItem";
 import { useMemo, useState , useContext} from "react";
-import {TodoContext} from "../../App.jsx"
+// import {TodoContext} from "../../App.jsx"
+import {TodoStateContext} from "../../App.jsx"
 
 
 // const List = ({ todos, onUpdate, onDelete}) => {
 const List = () => {
+	// const {todos} = useContext(TodoContext);//객체인 value 를 받기에 구조분해할당으로 변수 생성 (기존 방식은 'React Context 분리'파일 참고)
+	const todos = useContext(TodoStateContext); // <TodoStateContext.Provider value={todos}> 로 보내기에 변수에다가 배열을 담은거고, 위에처럼 객체구조분해할당이 필요없다.(쓰지말것)
 
-	const {todos} = useContext(TodoContext);
 	const [search, setSearch] = useState("");
 
 	//이벤트 핸들러
@@ -24,7 +26,7 @@ const List = () => {
 
 		return todos.filter(
 			(todo) =>
-				//todo의 원소중에
+				// todo의 원소중에
 				// ex) React Study에서 검색어 React만 있어도 조회되게 하기위해서
 				todo.content.toLowerCase().includes(search.toLowerCase()) //toLowerCase : 소문자로 변환
 			//참이되는 것만 필터링

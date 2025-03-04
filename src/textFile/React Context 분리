@@ -1,0 +1,43 @@
+export const TodoContext = createContext();
+
+function App() {
+...
+return (
+    ...
+    <TodoContext.Provider
+        value={{
+            todos,
+            onCreate,
+            onUpdate,
+            onDelete,
+        }}
+    >
+    <Editor />
+    <List/>
+    </TodoContext.Provider>
+    )
+}
+
+⏬ 분리(App.jsx)
+
+[선언]
+export const TodoStateContext = createContext();//변하할 값
+export const TodoDispatchContext = createContext();//변화지 않은 값
+
+[형태 해석]
+TodoStateContext 로 전체 감싸고
+그 내부에 TodoDispatchContext 를 넣어준다.
+
+<TodoStateContext.Provider value={todos}>
+    <TodoDispatchContext.Provider value={memoizedDispatch}>
+        <Editor />
+        <List/>
+    </TodoDispatchContext.Provider>
+</TodoStateContext.Provider>
+
+
+[공급]
+TodoStateContext는 todos를 공급하며
+ㄴ 리렌더링 : List.jsx
+TodoDispatchContext는 onCreate / onUpdate / onDelete를 공급(객체상태 value)한다.
+

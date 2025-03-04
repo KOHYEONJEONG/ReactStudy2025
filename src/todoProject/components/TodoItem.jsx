@@ -1,6 +1,7 @@
 import "./TodoItem.css";
 import { memo, useContext } from "react";
-import {TodoContext} from "../../App.jsx"
+// import {TodoContext} from "../../App.jsx"
+import {TodoDispatchContext} from "../../App.jsx"
 
 // const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 const TodoItem = ({ id, isDone, content, date}) => {
@@ -9,7 +10,8 @@ const TodoItem = ({ id, isDone, content, date}) => {
 	//memo(TodoItem)만 하면 안된다.
 	//객체타입 변수는 프롭스로 받는 자식 컴포넌트는 이렇게만 사용하면 안된다는 말이다.
 
-	const {onUpdate, onDelete} = useContext(TodoContext);
+	// const {onUpdate, onDelete} = useContext(TodoContext);
+	const {onUpdate, onDelete} = useContext(TodoDispatchContext);
 
 	const onChangeCheckbox = () => {
 		onUpdate(id);
