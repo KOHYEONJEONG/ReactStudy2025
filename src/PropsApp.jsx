@@ -22,6 +22,7 @@ function App() {
 
 			<Button text={"블로그"}>
 				{/* <div>자식요소</div> */}
+				{/*html 요소 또는 컴포넌트도 props로 넘길  수 있으며 childeren으로 받는다.*/}
 				<Header />
 			</Button>
 		</>

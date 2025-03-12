@@ -37,6 +37,8 @@ function reducer(state, action) {
 		case "DELETE":
 			return state.filter((todo) => todo.id !== action.data);
 		default:
+			console.log("default")
+			//throw new Error(`Unhandled action type: ${action.type}`);
 			return state;
 	}
 }
@@ -45,13 +47,13 @@ function reducer(state, action) {
 
 // Context 분리
 // eslint-disable-next-line react-refresh/only-export-components
-export const TodoStateContext = createContext();//변하할 값
+export const TodoStateContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변하할 값
 // eslint-disable-next-line react-refresh/only-export-components
-export const TodoDispatchContext = createContext();//변화지 않은 값
+export const TodoDispatchContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변화지 않은 값
 
 function TodoListContextApp() {
 	// const [todos, setTodos] = useState(mockData);
-	const [todos, dispatch] = useReducer(reducer, mockData);
+	const [todos, dispatch] = useReducer(reducer, mockData);//인자 : 리듀서 함수, 초기상태
 
 	const contentId = useRef(3);
 

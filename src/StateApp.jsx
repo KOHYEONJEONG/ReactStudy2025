@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import Bulb from "./component/Bulb";
-import Counter from "./component/Counter";
+import Bulb from "./componens/Bulb";
+import Counter from "./components/Counter";
 
 function App() {
 	return (

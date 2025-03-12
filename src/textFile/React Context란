@@ -52,8 +52,8 @@ const {onUpdate, onDelete} = useContext(TodoContext);
 
 ///////////////////////
 [최적화가 풀리는 문제]
-- Provider 컴포넌트도 엄연히 React의 컴포넌트이다.
-- App 컴포넌트로부터 Value Porops를 제공 받는 todos(state)와 OnCreate, OnUpdate, OnDelete 가 바뀌게 되면 객체가 다시 생성되고 리렌더링하게 된다.
+- 🚩Provider 컴포넌트도 엄연히 React의 컴포넌트이다.
+- App 컴포넌트로부터 Value Props를 제공 받는 todos(state)와 OnCreate, OnUpdate, OnDelete 가 바뀌게 되면 객체가 다시 생성되고 리렌더링하게 된다.
 - 그래서 분리를 하지 않으면 TodoItem 컴포넌트에서 todos(state)가 바뀌게 되면 useContext를 호출하여
 const {onUpdate, onDelete} = useContext(TodoContext); 이 객체가 다시 생성되며 TodoItem 리렌더링이 발생하게 된다.
-- memo를 적용했더라도 이렇게 useContext로부터ㅂ
+- memo를 적용했더라도 이렇게 useContext로부터

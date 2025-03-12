@@ -30,6 +30,8 @@ refObj.current
 # 해당 컴포넌트 리렌더링?
 Register 컴포넌트 (현재 컴포넌트) 최조 렌더링 될때 console.log('Register 렌더링')이 출력되고
 
-이후 '+버튼(버튼함수, 이벤트 핸들러)'을 클릭해도 'refObj.current++ 및 출력'만 계속 실행될 뿐
+이후 '+버튼(버튼함수, 이벤트 핸들러)'을 클릭해도 'countRef.current++ 및 출력'만 계속 실행될 뿐
 
 Register 컴포넌트(현재 컴포넌트)는 리렌더링 되지 않는다는걸 알 수 있다.(화면에 변경된 값 보이지 않음.)
+
+위치 : src/components/Register.jsx

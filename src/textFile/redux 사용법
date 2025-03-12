@@ -1,0 +1,100 @@
+생활코딩 : https://www.youtube.com/watch?v=yjuwpf7VH74
+
+============================================================================
+redux 설치
+react-redux 설치
+
+
+npm install react react-dom
+
+============================================================================
+import {createStore} from "redux";
+import {Provider, useSelector, useDispatch, connect} from "react-redux";
+
+//✅react-redux 4인방
+//1. useSelector : 어떤 state를 사용할지 , 🚩인자로 함수를 넣어줌.
+//2. useDispatch : state값을 변경
+//3. connect : 재사용할때 필요, 그렇지 않으면 굳이 사용안해도 됨.
+//4. Provider : 컴포넌트(대문자) , 울타리 , state를 어떤 컴포넌트에게 제공할건지 지정
+
+============================================================================
+⏬✅reducer 함수 : store 안에 state를 어떻게 변경할것인지 사용할 때, 🚩변화를 일으키는 함수
+//function  reducer(현재값, 액션값){
+function  reducer(currentState, action){
+
+    if(currentState === undefined) {  //빈값이면 1을 반환
+        return {
+            number : 1;
+        }
+    }
+
+    //과거의 객체를 복제
+    // ㄴ(불변성 유지 : 내부적으로 데이터가 변경되는것을 감지하기 때문이며 겉핥기 식으로 비교할 수 있어 좋은 성능을 유지할 수 있다.)
+    const newState = {...currentState};
+
+    if(action.type === "PLUS"){
+        newStore.number++; //증가된 값이 return 됨.
+    }
+
+    return newState;
+
+}
+
+//createStore는 스토어를 만들어주는 함수
+//✅store 지정하여 Provider props로 넣어줌.
+const store = createStore(reducer);
+
+//App 컴포넌트
+export default function App() {
+
+
+    return (
+        <div>
+            <h1>Root</h1>
+            <div
+                <Provider store={store}> {/*✅*/}
+                    <Left></Left>
+                    <Right></Right>
+                </Provider>
+            </div>
+        <div>
+
+    );
+
+}
+
+
+...
+function Left3(props){
+    console.log("3");//찍어보면 다른 컴포넌트에 영향을 받지 않고 Left3의 있는 3만 찍힌다.
+
+    //✅ 함수를 인자로 넣음, state를 입력값으로 받고 state 중 어떤 값을 사용할지 지정
+    const number = useSelector(state => state.number);
+
+    return(
+        <div>
+                {/*✅ 무선으로 연결*/}
+            <h1>Left3 : {number}</h1>
+        </div>
+    );
+}
+
+...
+function Right3(props){
+    const dispatch = useEDispatch();
+    return(
+        <div>
+            <h1>Right3</h1>
+
+                <input type="button" onClick=(()=>{
+                        dispatch({"type":"PLUS"})    //✅ 무선으로 연결
+                    })
+                >
+                </input>
+        </div>
+    );
+}
+...
+
+============================================================================
+예시 1 ) exercise.js

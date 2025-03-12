@@ -8,7 +8,8 @@ import { useState, useRef } from "react";
 
 const Register = () => {
 	console.log("Register 렌더링");
-
+	const data = useState("");
+	console.log(data);
 	// const [name, setName] = useState("이름");
 	// const [birth, setBirth] = useState("");
 	// const [country, setCountry] = useState("");
@@ -29,10 +30,10 @@ const Register = () => {
 		// console.log(e.target.name, e.target.value)
 		countRef.current++;
 		console.log(countRef.current);
-		setInput({
-			...input,
-			[e.target.name]: e.target.value, //태그의 name속성 필수임
-		});
+		// setInput({
+		// 	...input,
+		// 	[e.target.name]: e.target.value, //태그의 name속성 필수임
+		// });
 
 		// 함수형 업데이트 방법(https://react.vlpt.us/basic/07-useState.html)
 		// setInputs(inputs => ({
@@ -52,7 +53,14 @@ const Register = () => {
 	};
 
 	return (
+		//하잉
+		/*하이욥*/
 		<div>
+			<div
+				/* 여러 줄 주석 */
+			>
+				{countRef.current}
+			</div>
 			<div>
 				<input
 					ref={inputRef}
