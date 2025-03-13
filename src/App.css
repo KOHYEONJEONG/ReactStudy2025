@@ -13,3 +13,14 @@ body {
 	padding: 20px;
 	margin-bottom: 10px;
 }
+
+
+#container, #container div{
+	border: 1px solid red;
+	margin: 10px;
+}
+
+#grid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}

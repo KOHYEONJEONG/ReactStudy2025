@@ -6,6 +6,7 @@ react-redux 설치
 
 
 npm install react react-dom
+npm install react-redux @reduxjs/toolkit
 
 ============================================================================
 import {createStore} from "redux";
@@ -24,7 +25,7 @@ function  reducer(currentState, action){
 
     if(currentState === undefined) {  //빈값이면 1을 반환
         return {
-            number : 1;
+            number : 1
         }
     }
 
@@ -81,20 +82,21 @@ function Left3(props){
 
 ...
 function Right3(props){
-    const dispatch = useEDispatch();
+    const dispatch = useDispatch();
     return(
         <div>
             <h1>Right3</h1>
-
-                <input type="button" onClick=(()=>{
-                        dispatch({"type":"PLUS"})    //✅ 무선으로 연결
-                    })
-                >
-                </input>
+            <input
+                type="button"
+                value="+"
+                onClick={()=>{
+                    dispatch({"type":"PLUS"})    //✅ 무선으로 연결
+                }}/>
         </div>
-    );
+    )
 }
 ...
 
 ============================================================================
-예시 1 ) exercise.js
+BasicApp.jsx : 사용안하고 props 받기 > 다른 컴포넌트 리렌더링이 됨.(비효율)
+ReduxApp.jsx : redux와 react-redux 사용
