@@ -9,15 +9,7 @@ import RegisterApp from "./RegisterApp.jsx";
 import CounterApp from "./CounterApp.jsx";
 import PropsApp from "./PropsApp.jsx";
 import TodoListContextApp from "./TodoListContextApp.jsx";
-import DiaryApp from "./DiaryApp.jsx";
-
-import {BrowserRouter} from "react-router-dom";
-// createRoot(document.getElementById("root")).render(
-//         <TodoListContextApp />
-// );
 
 createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
-        <DiaryApp />
-    </BrowserRouter>
+        <TodoListContextApp />
 );
