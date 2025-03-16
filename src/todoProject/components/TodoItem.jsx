@@ -10,8 +10,9 @@ const TodoItem = ({ id, isDone, content, date}) => {
 	//memo(TodoItem)만 하면 안된다.
 	//객체타입 변수는 프롭스로 받는 자식 컴포넌트는 이렇게만 사용하면 안된다는 말이다.
 
+    //객체 구조분해 할당으로 변수 생성하기
 	// const {onUpdate, onDelete} = useContext(TodoContext);
-	const {onUpdate, onDelete} = useContext(TodoDispatchContext);
+	const {onUpdate, onDelete} = useContext(TodoDispatchContext);//useContext : 인자로 넣은 Context로부터 공급된 데이터를 반환해주는 함수.
 
 	const onChangeCheckbox = () => {
 		onUpdate(id);

@@ -45,10 +45,9 @@ function reducer(state, action) {
 
 // export const TodoContext = createContext();
 
-// Context 분리
-// eslint-disable-next-line react-refresh/only-export-components
+// Context 분리(컴포넌트 바깥에 작성이유 : 리렌더링 필요치 않음.)
+// export가 붙어야 Context가 필요한 컴포넌트가 값을 사용할 수 있다.
 export const TodoStateContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변하할 값
-// eslint-disable-next-line react-refresh/only-export-components
 export const TodoDispatchContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변화지 않은 값
 
 function TodoListContextApp() {
@@ -120,10 +119,18 @@ function TodoListContextApp() {
 		<div className="App">
 			{/* Header 컴포넌트는 App컴포넌트가 리렌더링되더라도, 리렌더링할 필요가 전혀 없다. */}
 			<Header />
+
+{/* 💥Provider도 컴포넌트이기 때문에 props가 바뀌면 리렌더링을 하게된다. */}
+{/* value={{todos, onCreate, onUpdate, onDelete}} <-- todos가 변경하게 되면 props로 제공하는 객체가 다시 생성하게 되고 그래서 리렌더링되는것*/}
+{/* 하위 컴포넌트는 부모 컴포넌트가 리렌더링이 됐기 때문에 같이 리렌더링이 되는것. */}
+
+        {/* 이제 개발자도구에서 보면 Context도 계층구조에 포함되는걸 볼 수 있다. */}
 			<TodoStateContext.Provider value={todos}>
 				<TodoDispatchContext.Provider value={memoizedDispatch}>
 					{/*<Editor onCreate={onCreate} />*/}
 					{/*	<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />*/}
+
+                    {/* 컨텍스트 안에 컴포넌트들은 모두 데이터를 공급받을 수 있다. */}
 					<Editor />
 					<List/>
 				</TodoDispatchContext.Provider>
