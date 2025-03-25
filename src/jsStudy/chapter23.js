@@ -29,7 +29,7 @@ getData2().then((result)=>{
 // await 키워드
 // 🚨async 함수 내부에서만 사용이 가능한 키워드(async가 붙지 않은 함수에서 사용시 오류발생!)
 // 비동기 함수가 다 처리되기를 기다리는 역할
-async function printDatat(){
+async function printData(){
     const data = await getData();//종료되기를 기다렸다가 값 반환(간결하다!)
     console.log(data);//{ name: 'ko' }
 
