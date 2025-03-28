@@ -4,7 +4,7 @@ function BasicApp() {
     const [number,setNumber] = useState(1)
     return (
         <div id="container">
-            <h1>Root</h1>
+            <h1>Root {number}</h1>
             <div id="grid">
                 <Left1 number={number}/>
                 <Right1 onIncrease={()=>{
@@ -50,9 +50,7 @@ function Right1(props){
     return(
         <div>
             <h1>Right1</h1>
-            <Right2 onIncrease={()=>{
-                props.onIncrease() //부모 함수 실행되게
-            }}/>
+            <Right2 onIncrease={props.onIncrease}/>
         </div>
     )
 }
