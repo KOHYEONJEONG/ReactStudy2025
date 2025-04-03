@@ -24,12 +24,13 @@ let {
 } = person;
 
 // 3. 객체 구조 분해 할당을 이용해서 함수의 매개변수를 받는 방법
-const func = ({ name, age, hobby, extra }) => {// 객체로 넘어올 때만 중괄호({})를 사용하여 객체 구조분해 하면됨. <- 🚨 일반 값을 넘겼을떄 중괄호때문에 못받아옴, 객체 값으로 전달 받을때만 중괄호 사용
+const func = ({ name, age, hobby, extra="default" }) => {// 객체로 넘어올 때만 중괄호({})를 사용하여 객체 구조분해 하면됨. <- 🚨 일반 값을 넘겼을떄 중괄호때문에 못받아옴, 객체 값으로 전달 받을때만 중괄호 사용
     //화살표함수
 	console.log(name, age, hobby, extra);
 };
 
 func(person);
+console.log(name, myAge, hobby, extra);
 
 //chapter04.js랑 같이 보기
 
