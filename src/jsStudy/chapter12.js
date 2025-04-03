@@ -68,4 +68,5 @@ p.then((value) => {
 
     //💥 그래도 여전히 콜백지옥이 일어난다. 
     // 이 다음은 키워드 async/ await에 대해 배워보자.
-    
+
+//실행: node src\jsStudy\chapter12.js
