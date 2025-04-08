@@ -1,5 +1,6 @@
 # 기본적인 원리
 무조건 렌더링이나 리렌더링이 된 상태에서야 deps 배열값이 바뀌었는지 검사한다.
+(컴포넌트 호출과 렌더링(화면 그려짐)과는 다르다)
 
 useRef 값은 들어와도 동작하지 않는다.
 왜? 객체 자체이기 때문에 바뀌는게 아니다.
@@ -13,7 +14,7 @@ ex )  [inputRef.current]
 
 
 # 하지만 이거는 알아야한다. 리렌더링이 되면은  deps 배열에 ref가 있어도 실행된다는걸!
-const [input, setInput] = useState("");
+const [input, setInput] = useState("");//setInput 상태함수가 실행되면 화면은 리렌더링된다.
 const count = useRef(0);
 
 const onChnage = (e) => {
