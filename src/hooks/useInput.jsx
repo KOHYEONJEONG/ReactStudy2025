@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+//참고 : 커스텀 hooks 만들기 
 //반복적으로 사용할 코드를 정의한 함수.
 export default function useInput(){
     console.log("useInput 호출")

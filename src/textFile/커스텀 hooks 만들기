@@ -1,0 +1,41 @@
+컴포넌트를 만들다보면 반복되는 로직이 자주 발생한다.
+예를들면 input을 관리하는 코드를 관리 할때마다 꽤나 비슷한 코드가 반복된다.
+
+이번에는 그러한 상황에 커스텀 Hooks를 만들어서 반복되는 로직을 쉽게 재사용하는 방법을 알아보자.
+
+위치 : src 디렉터리에 hooks를 만들고, 그 안에 (예시)useInput.js라는 파일 만들자.
+
+생성 : 커스텀 Hooks를 만들때는 보통 use라는 키워드로 시작되는 파일을 만들고 그안에 함수를 작성
+
+
+커스텀 Hooks 만드는 방법은 간단함.
+
+useState/ useEffect / useReducer / useCallback
+
+--------------사용 예시---------------
+
+import { useState, useCallback } from 'react';
+
+function useInputs(initialForm) {
+  const [form, setForm] = useState(initialForm);
+
+  // change
+  const onChange = useCallback(e => {
+    const { name, value } = e.target;
+    setForm(form => ({ ...form, [name]: value }));
+  }, []);
+
+  const reset = useCallback(() => setForm(initialForm), [initialForm]);
+  return [form, onChange, reset];
+}
+
+export default useInputs;
+
+-------------------사용법--------------------
+
+  const [{ username, email }, onChange, reset] = useInputs({
+    username: '',
+    email: ''
+  });
+
+
