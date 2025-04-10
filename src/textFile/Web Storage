@@ -1,0 +1,26 @@
+웹 브라우저 내장 DB(Web Storage)
+- 🚨웹 브라우저에 기본적으로 내장되어 있는 데이터베이스
+- 별도의 프로그램 설치 필요x, 라이브러리 설치 필요 x
+- 그냥 자바스크립트 내장함수 만으로 접근 가능
+
+ex)
+값을 저장 : localStorage.setItem(key, value)
+값을 꺼냄: localStorage.getItem(key)
+
+
+[종류]
+1. SessionStorage
+저장 : sessionStorage.setItem(key,value)
+꺼냄 : sessionStorage.getItem(key)
+
+- 브라우저 탭 별로 데이터를 보관
+- 탭이 종료되기 전에는 데이터를 유지(새로고침)
+- 탭이 종료되거나 꺼지면 데이터 삭제
+
+
+2. LocalStorage
+저장: localStorage.setItem(key,value)
+꺼냄: localStorage.getItem(key)
+
+- 사이트 주소별로 데이터 보관
+- 사용자가 직접 삭제하기 전까지 데이터 보관
