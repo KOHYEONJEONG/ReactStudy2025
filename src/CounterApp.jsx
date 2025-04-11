@@ -10,8 +10,8 @@ function App() {
 
 	//1. Mount(탄생) :[], 최초1회 실행
 	useEffect(() => {
-		console.log("Mount");
-	}, []);
+		console.log("1. Mount");
+	}, []);//deps는 빈배열을 넘겨준다.
 
 	//2. Update(변화 , 리렌더링)
 	useEffect(() => {
@@ -20,13 +20,11 @@ function App() {
 			isMount.current = true;
 			return;
 		}
-		console.log("update");
-	}); //deps가 없으면 : 컴포넌트가 리렌더링될 때 호출된다.
+		console.log("2. update");
+	}); //deps가 없으면 : 컴포넌트가 리렌더링될 때 호출된다.(처음 mount 실행x)
 
-	//3. UnMount(죽음)
 
 	//이벤트 핸들러
-
 	const onClickButton = (value) => {
 		setCount(count + value);
 	};
@@ -35,13 +33,12 @@ function App() {
 	/*
       useEffect(()=>{//🚨[]에 작성한 '원하는 값이 바뀌었을 때 콜백함수 실행'
         console.log(`count : ${count} input : ${input}`);//맨처음 컴포넌트가 렌더링 될때도 실행됨.
-
       },[count, input]);//[]:의존성 배열, 안에 있는 것중 하나의 값만 바뀌어도 실행됨.
   */
 
 	//계층구조(여러개의 컴포넌트들이 계층구조를 이룬다.)
 	//특정 컴포넌트가 다른 컴포넌트에게 값을 전달 하려면 반드시 부모-자식관계가 성립해야 한다.
-	//💥State Lifiting (state 끌어올리기): 하나의 state를 관리하려면 공통 부모 컴포넌트에서 만들어야 한다.
+	//💥State Lifting (state 끌어올리기): 하나의 state를 관리하려면 공통 부모 컴포넌트에서 만들어야 한다.
 	//일반통행 차선을 기억하자
 	//💥React.js의 데이터 흐름은 위에서 아래이다.(=단방향 데이터 흐름)
 	// ㄴ 파악하기 쉽고, 직관적이다.

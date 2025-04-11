@@ -41,10 +41,10 @@ const List = () => {
 	const { totalCount, doneCount, notDoneCount } = useMemo(() => {
 		//첫번째 인수는 콜백함수(변수에 값 넣어줌), 두번째 인수는 바뀔때 인식할 값
 		console.log("getAnalyzedData 호출"); //리렌더링 확인
-		const totalCount = todos.length;
-		//배열 전체요소 순회(많아지면 리렌더링될때마다 오래걸릴 수 있음 -> useMemo를 사용하기 때문에 최적화됨됨)
-		const doneCount = todos.filter((todo) => todo.isDone).length;
-		const notDoneCount = totalCount - doneCount;
+		const totalCount = todos.length;//전체 개수
+		//배열 전체요소 순회(많아지면 리렌더링될때마다 오래걸릴 수 있음 -> useMemo를 사용하기 때문에 최적화됨)
+		const doneCount = todos.filter((todo) => todo.isDone).length;//완료된 개수
+		const notDoneCount = totalCount - doneCount; // 미완료된 개수
 
 		return {
 			totalCount,
