@@ -1,3 +1,11 @@
+ ✅UnMount 사용 예시:
+ useEffect(() => {
+     return () => {
+         console.log("Even : unmount");
+     };
+ }, []);
+
+
  1. 타이머 정리
 useEffect(() => {
   const timer = setTimeout(() => alert("Hello"), 5000);
