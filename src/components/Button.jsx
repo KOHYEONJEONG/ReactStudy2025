@@ -2,11 +2,15 @@
 const Button = (props) => {
     //객체로 넘어옴
     console.log(props)//{text: '메일'}
+
+	//🚨props.color가 무조건 들어온다는 생각은 버려! 오류 발생해
     return <button style={{color:props.color}}>{props.text}</button>
 };
 */
 
-//객체의 구조분해 이용하기
+//리액트 버전 19번전 이후
+//props를 객체의 구조분해할당 방식으로 받아오기
+// default를 설정하기 전에 객체구조분해할당으로 받아온 후 가능하며 (ex)color="bl"로 설정하면된다.
 const Button = ({ text, color = "bl", children }) => {
 	//클릭과 같은 이벤트가 발생했을 때 실행될 수 있도록 설정된 이러한 함수를
 	//이벤트 핸들러 : 이벤트를 클릭과 같은 이벤트들을 실질적으로 처리하는 함수
@@ -33,6 +37,7 @@ const Button = ({ text, color = "bl", children }) => {
 	);
 };
 
+//리액트 18버전인 경우
 // //기본값을 주면 오류 안남
 // Button.defaultProps ={
 //     color:"green"
