@@ -43,19 +43,6 @@ function reducer(state, action) {
 	}
 }
 
-function reducer2(state, action){
-	switch (action.type) {
-		case "INSERT":
-			return [action.data, ...state];
-		case "UPDATE":
-			return state.map((todo) =>
-				todo.id === action.data ? {...todo, isDone: !todo.isDone} : todo
-			)
-		case "DELETE":
-			return state.filter((todo) => todo.id)
-	}
-}
-
 // export const TodoContext = createContext();
 
 // Context 분리(컴포넌트 바깥에 작성이유 : 리렌더링 필요치 않음.)
@@ -79,9 +66,6 @@ function TodoListContextApp() {
 			date: new Date().getTime(),
 		};
 
-		//todos.push(newTodo) <-- 이렇게하면 리렌더링 시 사라짐
-		//🚨변경된 값을 react가 감지하려면 제공된 '상태변화함수'를 이용하자.
-		//setTodos([newTodo, ...todos]); //새로운 배열 생성
 		dispatch({
 			type: "INSERT",
 			data: newTodo,
