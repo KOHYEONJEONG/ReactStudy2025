@@ -66,9 +66,6 @@ function TodoListContextApp() {
 			date: new Date().getTime(),
 		};
 
-		//todos.push(newTodo) <-- 이렇게하면 리렌더링 시 사라짐
-		//🚨변경된 값을 react가 감지하려면 제공된 '상태변화함수'를 이용하자.
-		//setTodos([newTodo, ...todos]); //새로운 배열 생성
 		dispatch({
 			type: "INSERT",
 			data: newTodo,
