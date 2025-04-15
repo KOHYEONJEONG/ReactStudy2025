@@ -43,19 +43,6 @@ function reducer(state, action) {
 	}
 }
 
-function reducer2(state, action){
-	switch (action.type) {
-		case "INSERT":
-			return [action.data, ...state];
-		case "UPDATE":
-			return state.map((todo) =>
-				todo.id === action.data ? {...todo, isDone: !todo.isDone} : todo
-			)
-		case "DELETE":
-			return state.filter((todo) => todo.id)
-	}
-}
-
 // export const TodoContext = createContext();
 
 // Context 분리(컴포넌트 바깥에 작성이유 : 리렌더링 필요치 않음.)
