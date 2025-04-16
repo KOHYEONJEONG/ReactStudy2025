@@ -32,7 +32,9 @@ function reducer(state, action) {
 		case "UPDATE":
 			//기존에 todoItem값만 나열하고 해당ID만 업데이트
 			return state.map((todo) =>
-				todo.id === action.data ? { ...todo, isDone: !todo.isDone } : todo
+				todo.id === action.data
+					? { ...todo, isDone: !todo.isDone }
+					: todo
 			);
 		case "DELETE":
 			return state.filter((todo) => todo.id !== action.data);
@@ -47,7 +49,7 @@ function reducer(state, action) {
 
 // Context 분리(컴포넌트 바깥에 작성이유 : 리렌더링 필요치 않음.)
 // export가 붙어야 Context가 필요한 컴포넌트가 값을 사용할 수 있다.
-export const TodoStateContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변하할 값
+export const TodoStateContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변화할 값
 export const TodoDispatchContext = createContext();//프롭스 드릴링 해결하기 위한 방안, 변화지 않은 값
 
 function TodoListContextApp() {
@@ -57,7 +59,7 @@ function TodoListContextApp() {
 	const contentId = useRef(3);
 
     //🔽컴포넌트 마운트 이후로는 리렌더링 안되게
-	//useCallback ( 최적화할 함수(익명함수), [deps] )
+	//useCallback ( 최적화할 함수(익명함수), [deps] ) <- ✅각 함수의 참조 값 고정
 	const onCreate =  useCallback((content) =>{
 		let newTodo = {
 			id: contentId.current++,
@@ -97,7 +99,12 @@ function TodoListContextApp() {
 
 
 	//App 컴포넌트 마운트 이후로 재생성되지 않게, deps []
+	//useCallback(fn, deps) ≒ useMemo(() => fn, deps)
 	const memoizedDispatch = useMemo(() => {
+		// 이미 useCallback으로 메모이제이션된 함수들, 이걸 다시 객체로 묶어서 메모이제이션 하는 건 의미 있다. 객체도 참조값이기 때문에 매 렌더링마다
+		// {}로 만들면 새로운 객체로 인식되기 때문이다.
+		// 그걸 막기 위해 useMemo로 객제 자체를 메모이제이션 해줌.
+		//✅ 묶은 객체의 참조값 고정
 		return { onCreate, onUpdate, onDelete };
 	}, []);
 
@@ -125,10 +132,9 @@ function TodoListContextApp() {
         {/* 이제 개발자도구에서 보면 Context도 계층구조에 포함되는걸 볼 수 있다. */}
 			<TodoStateContext.Provider value={todos}>
 				<TodoDispatchContext.Provider value={memoizedDispatch}>
-					{/*<Editor onCreate={onCreate} />*/}
-					{/*	<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />*/}
+				{/*<TodoDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}> ✅실제로는 여러개 값을 넘기기 때문에 (객체)를 넘긴다.*/}
 
-                    {/* 컨텍스트 안에 컴포넌트들은 모두 데이터를 공급받을 수 있다. */}
+                    {/* ⏬컨텍스트 안에 컴포넌트들은 모두 데이터를 공급받을 수 있다. */}
 					<Editor />
 					<List/>
 				</TodoDispatchContext.Provider>
