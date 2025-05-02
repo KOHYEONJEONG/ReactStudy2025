@@ -1,10 +1,8 @@
 import "./Editor.css";
 import { useState, useRef, useContext } from "react";
-// import {TodoContext} from "../../App.jsx";
 import {TodoDispatchContext} from "../../TodoListContextApp.jsx";
 // const Editor = ({ onCreate }) => {
 const Editor = () => {
-	// const {onCreate} = useContext(TodoContext);
 	const {onCreate} = useContext(TodoDispatchContext);
 
 	//객체 구조분해로 prop 받음.
