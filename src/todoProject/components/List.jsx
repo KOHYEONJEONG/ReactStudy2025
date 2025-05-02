@@ -9,6 +9,7 @@ import {TodoStateContext} from "../../TodoListContextApp.jsx"
 const List = () => {
 	// const {todos} = useContext(TodoContext);//객체인 value 를 받기에 구조분해할당으로 변수 생성 (기존 방식은 'React Context 분리'파일 참고)
 	const todos = useContext(TodoStateContext); // <TodoStateContext.Provider value={todos}> 로 보내기에 변수에다가 배열을 담은거고, 위에처럼 객체구조분해할당이 필요없다.(쓰지말것)
+	//배열 구조분해로 안 받는 이유? todos 자체가 배열 1개이고 그 안에 원소로는 객체를 지녔다.
 
 	const [search, setSearch] = useState("");
 

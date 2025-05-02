@@ -3,7 +3,8 @@ import { useState, useRef, useContext } from "react";
 import {TodoDispatchContext} from "../../TodoListContextApp.jsx";
 // const Editor = ({ onCreate }) => {
 const Editor = () => {
-	const {onCreate} = useContext(TodoDispatchContext);
+	console.log("Editor")
+	const {onCreate} = useContext(TodoDispatchContext);//객체 구조분해를 통해 받음(부모가 객체를 넘겼기 때문에)
 
 	//객체 구조분해로 prop 받음.
 	const [content, setContent] = useState("");

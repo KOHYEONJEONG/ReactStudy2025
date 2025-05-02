@@ -106,7 +106,7 @@ function TodoListContextApp() {
 		// 그걸 막기 위해 useMemo로 객제 자체를 메모이제이션 해줌.
 		//✅ 묶은 객체의 참조값 고정
 		return { onCreate, onUpdate, onDelete };
-	}, []);
+	}, []);//🍒TodoListContextApp 컴포넌트가 마운트 이후로는 다시는 생성되지 않기위해 [] 빈배열로 생성
 
 	const prevDispatchRef = useRef(memoizedDispatch)
 
@@ -131,6 +131,7 @@ function TodoListContextApp() {
 
         {/* 이제 개발자도구에서 보면 Context도 계층구조에 포함되는걸 볼 수 있다. */}
 			<TodoStateContext.Provider value={todos}>
+				{/*todos는 객체로 넘긴게 아니다. 그래서 그냥 const todos로 받으면 된다. List 컴포넌트에서 확인 */}
 				<TodoDispatchContext.Provider value={memoizedDispatch}>
 				{/*<TodoDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}> ✅실제로는 여러개 값을 넘기기 때문에 (객체)를 넘긴다.*/}
 

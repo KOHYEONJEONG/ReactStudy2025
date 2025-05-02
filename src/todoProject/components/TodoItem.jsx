@@ -5,6 +5,7 @@ import {TodoDispatchContext} from "../../TodoListContextApp.jsx"
 
 // const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
 const TodoItem = ({ id, isDone, content, date}) => {
+	console.log("TodoItem")
 	//함수는 객체타입으로 생성하지? 즉 새로운 주소값으로 저장된다(객체는 주소값으로 수행)
 	//현재 부모 App컴포넌트가 리렌더링되면 props인 onUpdate와 onDelete는 새로운 주소값(새로운 함수)으로 들어오기때문에
 	//memo(TodoItem)만 하면 안된다.
@@ -12,6 +13,9 @@ const TodoItem = ({ id, isDone, content, date}) => {
 
     //객체 구조분해 할당으로 변수 생성하기
 	// const {onUpdate, onDelete} = useContext(TodoContext);
+
+	//🚨memo를 적용한 해당 컴포넌트도 최적화가 풀릴 수 있다. 왜? 객체이기 때문에 새로 생성 시 새로운 공간에 불러오기 때문이다.
+
 	const {onUpdate, onDelete} = useContext(TodoDispatchContext);//useContext : 인자로 넣은 Context로부터 공급된 데이터를 반환해주는 함수.
 
 	const onChangeCheckbox = () => {

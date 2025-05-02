@@ -17,6 +17,6 @@ const Header = () => {
 //구체적으로는 이제는 부모컴포넌트가(App) 리렌더링이 되더라도
 //자신이 받는 props가 바뀌지 않으면 다시는 리렌더링이 발생하지 않는다.
 // export default memo(Header);//memo로 최적화됨.(🚨 Header는 굳이 memo를 사용할 필요 없다)
-export default Header;//memo로 최적화됨.
+export default Header;
 
 //개발자도구 > 컴포넌트s > 하이라이터 체크후 노란색박스가 있는곳은 리렌더링 되는거임.
