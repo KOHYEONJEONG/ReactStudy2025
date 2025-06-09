@@ -10,4 +10,4 @@ import CounterApp from "./CounterApp.jsx";
 import PropsApp from "./PropsApp.jsx";
 import TodoListContextApp from "./TodoListContextApp.jsx";
 
-createRoot(document.getElementById("root")).render(<PropsApp />);
+createRoot(document.getElementById("root")).render(<TodoListContextApp />);

@@ -28,7 +28,7 @@ const mockData = [
 	},
 ];
 
-function App() {
+function ToDoListApp() {
 	const [todos, setTodos] = useState(mockData);
 	const contentId = useRef(3);
 
@@ -67,4 +67,4 @@ function App() {
 	);
 }
 
-export default App;
+export default ToDoListApp;
