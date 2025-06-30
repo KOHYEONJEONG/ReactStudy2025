@@ -40,7 +40,7 @@ const TodoItem = ({ id, isDone, content, date}) => {
 };
 // props로 전달되는 함수가 useCallback으로 memoized되어 있어
 // TodoItem을 React.memo로 감싸면 리렌더링을 방지할 수 있음
-export default  memo(TodoItem);
+export default memo(TodoItem);
 
 //고차 컴포넌트(HOC)
 //콜백함수의 매개변수로 과거와 현재 PROPS를 비교한다.(바꼈는가? 안바꼈는가?)

@@ -5,7 +5,7 @@
 # 중괄호 없이 반환
 return todos.filter((todo) => todo.content.includes(search));
 
-# 중괄호를 사용하려면 return 문 필요
+# 🚩중괄호를 사용하려면 return 문 필요
 return todos.filter((todo) => { return todo.content.includes(search); });
 
 #참고 src\todoProject\components\List.jsx

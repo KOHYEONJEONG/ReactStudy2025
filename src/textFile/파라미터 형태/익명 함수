@@ -1,0 +1,13 @@
+보통
+<Right2 onIncrease={props.onIncrease} />
+
+이렇게 전달을 한다면 아래와 같은 방법으로도 보낸다.
+
+# 언제 감싸서 써야 할까?
+전달하면서 파라미터를 추가하거나
+전달 전 로직을 끼워넣어야 할 때만 ()=>{}로 감싸야 해.
+
+<Right3 onIncrease={() => {
+    console.log("로깅");  // 전달 전 로직을 끼워야할때나~
+    props.onIncrease(5); // 파라미터 추가
+}} />

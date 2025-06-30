@@ -1,18 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import Counter from "./jsStudy/상태관리/component/Counter.jsx";
+import MyPage from "./jsStudy/상태관리/component/MyPage.jsx";
 
-const useCount = () => {
-	const [count, setCount] = useState(0);
-
-	return [count, setCount];
-};
 function App() {
-	const [count, setCount] = useCount();
 
 	return (
 		<div>
-			{count}
-			<button onClick={() => setCount((C) => C + 1)}>+1</button>
+			<Counter></Counter>
+			<br/>
+			<MyPage></MyPage>
 		</div>
 	);
 }

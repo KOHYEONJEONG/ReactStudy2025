@@ -3,15 +3,14 @@ import { createStore } from 'redux';
 // createStore는 스토어를 만들어주는 함수입니다.
 // 리액트 프로젝트에서는 단 하나의 스토어를 만듭니다.
 
-/* 리덕스에서 관리 할 상태 정의 */
+/* redux가 관리할 상태들의 초기값 */
 const initialState = {
 	counter: 0,
 	text: '',
 	list: []
 };
 
-/* 액션 타입 정의 */
-// 액션 타입은 주로 대문자로 작성합니다.
+/* 액션 Type : 어단 행동을 할것인지 명시하는 상수(type은 문자열이고 필수) */
 const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 const CHANGE_TEXT = 'CHANGE_TEXT';
@@ -74,12 +73,11 @@ function reducer(state = initialState, action) {
 			return state;
 	}
 }
-
+console.log("----------------------------------")
 /* 스토어 만들기 */
-const store = createStore(reducer);
+const store = createStore(reducer); // 출력: default, 우리가 만든 액션 타입이 아님 → switch의 default로 빠짐
 console.log("----------------------------------")
 
-console.log("1 ",store.getState()); // 현재 store 안에 들어있는 상태를 조회합니다.
 
 // 스토어안에 들어있는 상태가 바뀔 때 마다 호출되는 listener 함수
 const listener = () => {
@@ -87,14 +85,15 @@ const listener = () => {
 	console.log(state);
 };
 
+//store.subscribe(listener); 이렇게만 쓰면
 const unsubscribe = store.subscribe(listener);
 // 구독을 해제하고 싶을 때는 unsubscribe() 를 호출하면 됩니다.
 
 // 액션들을 디스패치 해봅시다.
-store.dispatch(increase());
-store.dispatch(decrease());
-store.dispatch(changeText('안녕하세요'));
-store.dispatch(addToList({ id: 1, text: '와우' }));
+store.dispatch(increase()); 							//출력: { counter: 1, text: '', list: [] }
+store.dispatch(decrease());			 					//출력: { counter: 0, text: '', list: [] }
+store.dispatch(changeText('안녕하세요'));			//출력: { counter: 0, text: '안녕하세요', list: [] }
+store.dispatch(addToList({ id: 1, text: '와우' }));//출력: { counter: 0, text: '안녕하세요', list: [{ id: 1, text: '와우' }] }
 
 
-// 실행 : node src/jsStudy/react/exercise.js
+// 실행 : node src/jsStudy/상태관리/exercise.js

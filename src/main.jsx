@@ -10,4 +10,12 @@ import CounterApp from "./CounterApp.jsx";
 import PropsApp from "./PropsApp.jsx";
 import TodoListContextApp from "./TodoListContextApp.jsx";
 
-createRoot(document.getElementById("root")).render(<TodoListContextApp />);
+import { Provider } from 'react-redux';
+import store from './jsStudy/상태관리/store/store.js'; // 너가 만든 store 경로
+
+// createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+	<Provider store={store}>
+		<App />
+	</Provider>
+);
