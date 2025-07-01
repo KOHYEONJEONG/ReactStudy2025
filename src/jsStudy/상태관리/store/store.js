@@ -3,3 +3,6 @@ import reducer from './reducer.js';
 
 const store = createStore(reducer);
 export default store;
+
+
+// 사용처 : /src/main.jsx

@@ -35,3 +35,5 @@ export default function reducer(state = initialState, action) {
 			return state;
 	}
 }
+
+// 사용처 : src/jsStudy/상태관리/store/store.js
