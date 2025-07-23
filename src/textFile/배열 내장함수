@@ -4,15 +4,15 @@ https://learnjs.vlpt.us/basics/09-array-functions.html
 map은 배열 안의 각 원소를 변환할 때 사용되며, 이 과정에서 '새로운 배열'을 만든다.
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
 
-⏬map사용 X
+⏬map 사용 안하고, forEach 사용 시
 const squared = [];
-array.forEach(n => {
+array.forEach(n => { //📌forEach : 무언가를 반복할 뿐, 결과를 반환하지 않음
   squared.push(n * n);
 });
 
 ⏬map사용, 간결
 const square = n => n * n;
-const squared = array.map(square);
+const squared = array.map(square); //📌map 기존 배열을 기반으로 새로운 배열을 만들어 반환
 
 ✅리액트에서는 동적인 배열을 렌더링해야할 때는 이 함수를 사용하여 일반 데이터 배열을 리액트 엘리멘트로 이루어진 배열로 변환해주면된다.(https://react.vlpt.us/basic/11-render-array.html)
 예시)

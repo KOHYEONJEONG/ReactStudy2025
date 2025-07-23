@@ -1,4 +1,4 @@
-/*
+/* 비구조화 할당 문법 적용 전
 const Button = (props) => {
     //객체로 넘어옴
     console.log(props)//{text: '메일'}

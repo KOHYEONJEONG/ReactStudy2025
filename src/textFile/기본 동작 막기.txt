@@ -1,0 +1,7 @@
+e.preventDefault()
+
+
+const handleSubmit = (e) => {
+  e.preventDefault(); // ✅ 폼의 기본 제출을 막음
+  console.log('내가 원하는 로직 실행');//🚩
+};
